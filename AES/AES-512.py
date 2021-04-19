@@ -5,10 +5,10 @@
 
 import numpy as np
 import sys
-sys.stdout = open("output.txt", 'w')
+# sys.stdout = open("output.txt", 'w')
 
-testkey = "thisIsARandomKeyWith64CharactersBecauseAES512RequiresThatMany123"
-testmsg = "Two One Nine Two"
+testkey = "sidhantunnithan"
+testmsg = "this is a test"
 
 # Rijndael Forward S-Box
 # https://en.wikipedia.org/wiki/Rijndael_S-box
@@ -265,10 +265,24 @@ def addRoundKey(msgHex, subKey):
 # Main encryption function
 def encrypt(key, msg):
 
+    if(len(key) > 64):
+        print("Key cannot be more than 64 characters")
+        return []
+    elif(len(key) == 0):
+        print("Key cannot be empty")
+        return []
+
     # Format Key
-    keyArray = np.array(list(key))
+    keyArray = np.array(list(key.ljust(64)))
     keyHex = np.array([(ord(c)) for c in keyArray])
     keyHex = np.reshape(keyHex, (16, 4))
+
+    if(len(msg) > 16):
+        print("Password cannot be more than 16 characters")
+        return []
+    elif(len(msg) == 0):
+        print("Password cannot be empty")
+        return []
 
     # Format Password
     msgArray = np.array(list(msg.ljust(16)))
@@ -305,10 +319,22 @@ def encrypt(key, msg):
     return cipherText
 
 def decrypt(key, msg):
+
+    if(len(key) > 64):
+        print("Key cannot be more than 64 characters")
+        return []
+    elif(len(key) == 0):
+        print("Key cannot be empty")
+        return []
+
     # Format Key
-    keyArray = np.array(list(key))
+    keyArray = np.array(list(key.ljust(64)))
     keyHex = np.array([(ord(c)) for c in keyArray])
     keyHex = np.reshape(keyHex, (16, 4))
+
+    if(len(msg) != 16):
+        print("Cipher has to be exactly 16 characters")
+        return []
 
     # Format Password
     msgHex = msg
@@ -342,7 +368,6 @@ def decrypt(key, msg):
         for j in i:
             cipherText.append(j)
     return cipherText
-
 
 cipher = encrypt(testkey, testmsg)
 print("K : " + testkey)
