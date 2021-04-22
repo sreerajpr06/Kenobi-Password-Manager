@@ -6,7 +6,6 @@ import Login from "./components/LoginPage";
 import About from "./components/AboutPage";
 import Contact from "./components/ContactPage";
 
-
 class App extends Component{
     render() {
         <MainPage />
@@ -16,6 +15,7 @@ class App extends Component{
         <Route exact path="/login" component={Login} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
+
             
         </Router>
     
