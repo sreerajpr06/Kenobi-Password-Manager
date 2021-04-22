@@ -1,12 +1,10 @@
 import React from "react";
 import Mainheader from "../MainHeader";
-import LoginBody from "./LoginBody";
 
-export default function LoginPage(){
+export default function ContactPage(){
     return(
         <div>
             <Mainheader />
-            <LoginBody />
         </div>
     )
 }

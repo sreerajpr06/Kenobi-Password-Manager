@@ -4,8 +4,7 @@ import dog from "../assets/images/23.png";
 
 
 
-
-function RegisterBody(){
+function LoginBody(){
     return(
         <body class="font-actor bg-lightgrey">
 		
@@ -16,37 +15,13 @@ function RegisterBody(){
 					
 					<div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
 						<img src={dog} alt="dog"></img>
-
+						
 
 					</div>
 					
 					<div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
-						<h3 class="pt-4 text-2xl text-center">Create an Account!</h3>
+						<h3 class="pt-4 text-2xl text-center">Login to your account!</h3>
 						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-							<div class="mb-4 md:flex md:justify-between">
-								<div class="mb-4 md:mr-2 md:mb-0">
-									<label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
-										First Name
-									</label>
-									<input
-										class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-										id="firstName"
-										type="text"
-										placeholder="First Name"
-									/>
-								</div>
-								<div class="md:ml-2">
-									<label class="block mb-2 text-sm font-bold text-gray-700" for="lastName">
-										Last Name
-									</label>
-									<input
-										class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-										id="lastName"
-										type="text"
-										placeholder="Last Name"
-									/>
-								</div>
-							</div>
 							<div class="mb-2">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
 									Email
@@ -58,7 +33,7 @@ function RegisterBody(){
 									placeholder="Email"
 								/>
 							</div>
-							<div class="mb-8 md:flex md:justify-between">
+							<div class="mb-8">
 								<div class="mb-4 md:mr-2 md:mb-0">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="password">
 										Password
@@ -69,18 +44,7 @@ function RegisterBody(){
 										type="password"
 										placeholder="******************"
 									/>
-									<p class="text-xs italic text-red-500">Please choose a password.</p>
-								</div>
-								<div class="md:ml-2">
-									<label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
-										Confirm Password
-									</label>
-									<input
-										class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-										id="c_password"
-										type="password"
-										placeholder="******************"
-									/>
+									<p class="text-xs italic text-red-500">Please enter your password.</p>
 								</div>
 							</div>
 							<div class="mb-10 text-center">
@@ -88,7 +52,7 @@ function RegisterBody(){
 									class="w-full px-4 py-2 font-bold text-white bg-lightgrey rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
 									type="button"
 								>
-									Register Account
+									Log in
 								</button>
 							</div>
 							<hr class="mb-4 border-t" />
@@ -98,7 +62,7 @@ function RegisterBody(){
 									class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"
 									href="./index.html"
 								>
-									Already have an account? Login!
+									Don't have an account yet? Register!
 								</a>
 							</div>
 						</form>
@@ -111,4 +75,4 @@ function RegisterBody(){
         
 );
 }
-export default RegisterBody;
+export default LoginBody;
