@@ -1,12 +1,12 @@
 import React from "react";
 import Mainheader from "../MainHeader";
-import LoginBody from "./LoginBody";
+import AboutUs from "./AboutUs";
 
-export default function LoginPage(){
+export default function AboutPage(){
     return(
         <div>
             <Mainheader />
-            <LoginBody />
+            <AboutUs />
         </div>
     )
 }
