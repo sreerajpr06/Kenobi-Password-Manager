@@ -1,15 +1,26 @@
 const express = require("express");
-const path = require("path");
+const cors = require("cors");
+const mongoose = require("mongoose")
+
+require('dotenv').config();
 
 const app = express();
-const port = 5050;
+const port = process.env.PORT || 5000;
 
-// app.use(express.static(path.join(__dirname + "../Client/public")));
+app.use(cors());
+app.use(express.json());
 
-// app.get("/", (req, res) => {
-//     res.send("Hello human")
-// });
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const connection = mongoose.connection;
+connection.once( 'open' , () => {
+    console.log("MongoDB connection set aayi mwone");
+})
 
-app.listen(process.env.PORT || port, function () {
-    console.log("Server Started on port " + port);
-});
+const usersRouter = require('./routes/users');
+
+app.use('/users', usersRouter);
+
+app.listen(port, () => {
+    console.log("Port: " + port);
+})
