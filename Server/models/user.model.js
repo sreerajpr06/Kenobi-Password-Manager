@@ -10,8 +10,7 @@ const detailSchema = new Schema({
     },
     username: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     password: {
         type: String,
@@ -26,11 +25,6 @@ const userSchema = new Schema({
         unique: true,
         trim: true,
         minlength: 3
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 8
     },
     details: [ detailSchema ]
 }, {
