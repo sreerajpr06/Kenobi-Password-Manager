@@ -1,12 +1,17 @@
-# Getting Started with Create React App
+# Kenobi Password Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Client Side
 
-## Available Scripts
+Client side is done in the Client folder.  \
+`cd Client`
 
-In the project directory, you can run:
+To install all dependencies, run \
+`npm i`
 
-### `npm start`
+### To run in Development mode 
+
+In the project directory, you can run: \
+`npm start` 
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,12 +19,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+### To build the app
+In the project directory, run \
+`npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,44 +29,51 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Server Side
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Server side is done in the Server folder. \
+`cd Server`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To install all dependencies, run \
+`npm i`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Consider installing nodemon for ease of development \
+`npm install -g nodemon` \
+(omit -g if you don't want it to be installed globally)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run the server, in the Server folder, run \
+`nodemon server.js` \
+or, if nodemon is not installed, run \
+`node server.js` 
 
-## Learn More
+## Creating Database (in MongoDB Atlas)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Go to the [MongoDB Atlas](https://account.mongodb.com/account/login?n=%2Fv2%2F6086825ce97ae723ddc04224) site and log in.\
+Create a new project, name it as you like (eg. Kenobi).\
+Create a new cluster. For that, click on "Build a Cluster".\
+Choose a path of your choice (there's a free plan also).\
+Select a cloud provider and region (eg. Google Cloud, and Mumbai). \
+It would take a few minutes to create the cluster. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Once it's created, click on "Connect".\
+On the screen that follows, click on "Add your current IP address" for the section "Whitelist your connection IP address". Under that, in the "Create a MongoDB User" section, add a username and password, and note it down. Then, click on "Choose a connection method". \
+On the "Choose a connection method" tab, select "Connect your application"and copy the connection string that proceeds it. 
 
-### Code Splitting
+Go to your project folder. Go to the Server directory.  \
+`cd Server` \
+Inside there, create a new file and name it '.env', or run in the terminal \
+`touch .env` \
+Open the .env file in a text editor you prefer and copy \
+`ATLAS_URI=<insert the connection string here>`
+Save the file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+In the terminal, run  \
+`nodemon server.js` \
+If nodemon is not installed, run \
+`node server.js` \
+You should be able to see the message \
+`MongoDB connection established` \
+if it all went smooth.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
