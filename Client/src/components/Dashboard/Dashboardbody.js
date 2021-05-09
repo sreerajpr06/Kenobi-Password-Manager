@@ -243,7 +243,7 @@ export default function Example() {
                     <div>
                       <div className="flex items-center">
                         
-                        <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
+                        <h1 className="ml-3 text-2xl font-bold leading-7 text-white sm:leading-9 sm:truncate">
                           lazarantony@gmail.com
                         </h1>
                       </div>
@@ -259,7 +259,7 @@ export default function Example() {
           <div className="mt-8 bg-lightgrey">
            
                    
-            <h2 className="max-w-6xl mx-auto mt-4 mb-6 px-4 text-2xl leading-6 font-medium text-orange tracking-wider sm:px-6 lg:px-8 ">
+            <h2 className="max-w-6xl mx-auto mt-4 mb-6 px-4 text-2xl leading-6 font-medium text-white tracking-wider sm:px-6 lg:px-8 ">
               Passwords
             </h2>
 
@@ -317,24 +317,24 @@ export default function Example() {
                     <table className="min-w-full divide-y-2 divide-black bg-darkgrey">
                       <thead>
                         <tr>
-                          <th className="px-6 py-5 text-left text-md font-xs text-black uppercase ">
+                          <th className="px-6 py-5 text-left text-md font-xs text-white uppercase ">
                             Website
                           </th>
-                          <th className="px-6 py-5 text-right text-md font-xs text-black uppercase ">
+                          <th className="px-6 py-5 text-right text-md font-xs text-white uppercase ">
                             Password
                           </th>
                          
-                          <th className="px-6 py-5  text-right text-md font-xs text-black uppercase">
+                          <th className="px-6 py-5  text-right text-md font-xs text-white uppercase">
                             Date
                           </th>
                         </tr>
                       </thead>
                       <tbody className="bg-black divide-y-2 divide-black">
                         {transactions.map((transaction) => (
-                          <tr key={transaction.id} className="bg-orange">
-                            <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <tr key={transaction.id} className="bg-white">
+                            <td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-md text-gray-900">
                               <div className="flex">
-                                <a href={transaction.href} className="group inline-flex space-x-2 truncate text-sm">
+                                <a href={transaction.href} className="group inline-flex space-x-2 truncate text-md">
                                   <GlobeAltIcon
                                     className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                                     aria-hidden="true"
@@ -343,7 +343,7 @@ export default function Example() {
                                 </a>
                               </div>
                             </td>
-                            <td className="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-500">
+                            <td className="px-6 py-4 text-left whitespace-nowrap text-md text-gray-500">
                               <span className="text-gray-900 font-medium">{transaction.amount} </span>
                               
                             </td>
@@ -361,7 +361,7 @@ export default function Example() {
                       aria-label="Pagination"
                     >
                       <div className="hidden sm:block">
-                        <p className="text-sm text-black">
+                        <p className="text-sm text-white">
                           Showing <span className="font-medium">1</span> to <span className="font-medium">10</span> of{' '}
                           <span className="font-medium">20</span> results
                         </p>
@@ -369,13 +369,13 @@ export default function Example() {
                       <div className="flex-1 flex justify-between sm:justify-end">
                         <a
                           href="#"
-                          className="relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-black bg-darkgrey hover:bg-gray-50"
+                          className="relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-white bg-darkgrey hover:bg-gray-50"
                         >
                           Previous
                         </a>
                         <a
                           href="#"
-                          className="ml-3 relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-black bg-darkgrey hover:bg-gray-50"
+                          className="ml-3 relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-white bg-darkgrey hover:bg-gray-50"
                         >
                           Next
                         </a>
