@@ -3,7 +3,7 @@ import {BrowserRouter as Router,Route,Switch,Link,Redirect} from "react-router-d
 import logo from "../assets/images/orangelogo4.png";
 
 
-function Mainheader(){
+function Mainheader2(){
     return(
         <div className="px-0.0 bg-orange font-actor">
         
@@ -30,9 +30,9 @@ function Mainheader(){
                         </div>
                         <div>
                         <Link to="/login" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-orange font-light mr-4">
-                            LOG IN
+                            LOG OUT
                         </Link>
-                        <Link to="/register" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-orange hover:border-transparent bg-orange hover:text-teal mt-4 lg:mt-0">REGISTER</Link>
+                        {/* <Link to="/register" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-orange hover:border-transparent bg-orange hover:text-teal mt-4 lg:mt-0">REGISTER</Link> */}
                         </div>
                     </div>
                     </nav>
@@ -45,4 +45,4 @@ function Mainheader(){
         
     );
 }
-export default Mainheader;
+export default Mainheader2;

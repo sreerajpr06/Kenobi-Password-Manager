@@ -3,8 +3,8 @@ import {BrowserRouter as Router,Route,Switch,Link,Redirect} from "react-router-d
 import Register from "./components/Register";
 import MainPage from "./components/MainPage";
 import Login from "./components/LoginPage";
-import About from "./components/AboutPage";
-import Contact from "./components/ContactPage";
+import Dashboard from "./components/Dashboard";
+import Team from "./components/TeamPage";
 
 
 class App extends Component{
@@ -14,8 +14,9 @@ class App extends Component{
         <Route exact path="/" component={MainPage} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/team" component={Team} />
+        
             
         </Router>
     

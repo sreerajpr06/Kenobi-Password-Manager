@@ -1,10 +1,32 @@
-import React from "react";
+import React,{useState} from "react";
 import dog from "../assets/images/23.png";
-
+import axios from "axios";
 
 
 
 function RegisterBody(){
+	const [email,  setEmail] = useState('');
+	function onChangeUsername(e) {
+		setEmail(e.target.value)
+		}
+	function addUser(e){
+        
+        const username=email;
+		const details=null;
+		
+		const user = 
+		{
+			"username": username, 
+			"details": details
+		}
+			
+			axios.post('http://localhost:5000/users/add', user)
+			.then(res => console.log(res.data));
+			
+			
+
+
+	}
     return(
         <body class="font-actor bg-lightgrey">
 		
@@ -50,7 +72,7 @@ function RegisterBody(){
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
 									Email
 								</label>
-								<input
+								<input onChange={onChangeUsername}
 									class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 									id="email"
 									type="email"
@@ -83,12 +105,14 @@ function RegisterBody(){
 								</div>
 							</div>
 							<div class="mb-10 text-center">
-								<button
+								 <button
 									class="w-full px-4 py-2 font-bold text-white bg-lightgrey rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-									type="button"
+									type="button"  onClick={addUser}
 								>
 									Register Account
 								</button>
+								{/* <input type="submit" value="Register account " className="w-full px-4 py-2 font-bold text-white bg-lightgrey rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+									type="button" /> */}
 							</div>
 							<hr class="mb-4 border-t" />
 							
