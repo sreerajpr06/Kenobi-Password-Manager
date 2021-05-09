@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// Schema for storing details of website
 const detailSchema = new Schema({
     site: {
         type: String,
@@ -18,6 +19,7 @@ const detailSchema = new Schema({
     }
 })
 
+// Schema for storing user details
 const userSchema = new Schema({
     username: {
         type: String,
@@ -33,4 +35,5 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
+// Exporting the User schema
 module.exports = User; 
