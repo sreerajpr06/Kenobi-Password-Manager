@@ -1,13 +1,12 @@
 import React from "react";
 import Mainheader from "../MainHeader";
-import RegisterBody from "./RegisterBody";
- 
+import LoginBody from "./LoginBody";
 
-export default function MainPage(){
+export default function LoginPage(){
     return(
         <div>
             <Mainheader />
-            <RegisterBody />
+            <LoginBody />
         </div>
     )
 }

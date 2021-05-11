@@ -1,5 +1,6 @@
 import React from "react";
-import Register from "./components/Register";
+import {BrowserRouter as Router,Route,Switch,Link,Redirect} from "react-router-dom";
+import logo from "../assets/images/orangelogo4.png";
 
 
 function Mainheader(){
@@ -9,8 +10,8 @@ function Mainheader(){
         
                     <nav class="flex items-center justify-between flex-wrap bg-darkgrey p-6">
                     <div class="flex items-center flex-no-shrink text-white mr-6">
-                        <img src="https://www.flaticon.com/svg/vstatic/svg/4061/4061701.svg?token=exp=1618405666~hmac=91cea5ad6ae7771220279c5d0b861bc8" alt="logo" width="50" class="mr-3"></img>
-                        <span class="font-normal text-white text-3xl font-actor">KENOBI</span>
+                        <img src={logo} alt="logo" width="50" class="mr-3"></img>
+                        <Link to="/" class="font-normal text-white text-3xl font-actor">KENOBI</Link>
                     </div>
                     <div class="block lg:hidden">
                         <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
@@ -19,19 +20,17 @@ function Mainheader(){
                     </div>
                     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                         <div class="text-sm lg:flex-grow">
-                        <a href="www.google.com" class="block mt-4 lg:inline-block lg:mt-3 text-white hover:text-orange font-light mr-4">
-                            ABOUT
-                        </a>
-                        <a href="www.google.com" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-orange font-light mr-4">
-                            CONTACT
-                        </a>
+                        
+                        <Link to="/team" class="block mt-2 lg:inline-block lg:mt-2 text-white hover:text-orange font-light mr-4">
+                            TEAM
+                        </Link>
                        
                         </div>
                         <div>
-                        <a href="www.google.com" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-orange font-light mr-4">
+                        <Link to="/login" class="block mt-2 lg:inline-block lg:mt-2 text-white hover:text-orange font-light mr-4">
                             LOG IN
-                        </a>
-                        <a href="www.google.com" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-orange hover:border-transparent bg-orange hover:text-teal mt-4 lg:mt-0">REGISTER</a>
+                        </Link>
+                        <Link to="/register" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-orange hover:border-transparent bg-orange hover:text-teal mt-4 lg:mt-0">REGISTER</Link>
                         </div>
                     </div>
                     </nav>

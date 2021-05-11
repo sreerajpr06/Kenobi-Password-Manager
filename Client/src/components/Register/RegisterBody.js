@@ -1,5 +1,32 @@
-import React from "react";
+import React,{useState} from "react";
+import dog from "../assets/images/23.png";
+import axios from "axios";
+
+
+
 function RegisterBody(){
+	const [email,  setEmail] = useState('');
+	function onChangeUsername(e) {
+		setEmail(e.target.value)
+		}
+	function addUser(e){
+        
+        const username=email;
+		const details=null;
+		
+		const user = 
+		{
+			"username": username, 
+			"details": details
+		}
+			
+			axios.post('http://localhost:5000/users/add', user)
+			.then(res => console.log(res.data));
+			
+			
+
+
+	}
     return(
         <body class="font-actor bg-lightgrey">
 		
@@ -9,7 +36,7 @@ function RegisterBody(){
 				<div class="w-full xl:w-3/4 lg:w-11/12 flex my-3">
 					
 					<div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg">
-						<img src="https://source.unsplash.com/Mv9hjnEUHR4/600x800"alt="dog"></img>
+						<img src={dog} alt="dog"></img>
 						
 
 					</div>
@@ -17,7 +44,7 @@ function RegisterBody(){
 					<div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
 						<h3 class="pt-4 text-2xl text-center">Create an Account!</h3>
 						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-							<div class="mb-2 md:flex md:justify-between">
+							<div class="mb-4 md:flex md:justify-between">
 								<div class="mb-4 md:mr-2 md:mb-0">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
 										First Name
@@ -41,18 +68,18 @@ function RegisterBody(){
 									/>
 								</div>
 							</div>
-							<div class="mb-4">
+							<div class="mb-2">
 								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
 									Email
 								</label>
-								<input
+								<input onChange={onChangeUsername}
 									class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 									id="email"
 									type="email"
 									placeholder="Email"
 								/>
 							</div>
-							<div class="mb-4 md:flex md:justify-between">
+							<div class="mb-8 md:flex md:justify-between">
 								<div class="mb-4 md:mr-2 md:mb-0">
 									<label class="block mb-2 text-sm font-bold text-gray-700" for="password">
 										Password
@@ -77,23 +104,18 @@ function RegisterBody(){
 									/>
 								</div>
 							</div>
-							<div class="mb-6 text-center">
-								<button
+							<div class="mb-10 text-center">
+								 <button
 									class="w-full px-4 py-2 font-bold text-white bg-lightgrey rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-									type="button"
+									type="button"  onClick={addUser}
 								>
 									Register Account
 								</button>
+								{/* <input type="submit" value="Register account " className="w-full px-4 py-2 font-bold text-white bg-lightgrey rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+									type="button" /> */}
 							</div>
-							<hr class="mb-6 border-t" />
-							<div class="text-center">
-								<a
-									class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"
-									href="www.google.com"
-								>
-									Forgot Password?
-								</a>
-							</div>
+							<hr class="mb-4 border-t" />
+							
 							<div class="text-center">
 								<a
 									class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"

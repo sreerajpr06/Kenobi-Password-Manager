@@ -1,13 +1,10 @@
 import React from "react";
 import Mainheader from "../MainHeader";
-import RegisterBody from "./RegisterBody";
- 
 
-export default function MainPage(){
+export default function TeamPage(){
     return(
         <div>
             <Mainheader />
-            <RegisterBody />
         </div>
     )
 }
