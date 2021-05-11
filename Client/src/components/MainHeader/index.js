@@ -20,16 +20,14 @@ function Mainheader(){
                     </div>
                     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                         <div class="text-sm lg:flex-grow">
-                        <Link to="/dashboard" class="block mt-4 lg:inline-block lg:mt-3 text-white hover:text-orange font-light mr-4">
-                            DASHBOARD
-                        </Link>
-                        <Link to="/contact" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-orange font-light mr-4">
+                        
+                        <Link to="/team" class="block mt-2 lg:inline-block lg:mt-2 text-white hover:text-orange font-light mr-4">
                             TEAM
                         </Link>
                        
                         </div>
                         <div>
-                        <Link to="/login" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-orange font-light mr-4">
+                        <Link to="/login" class="block mt-2 lg:inline-block lg:mt-2 text-white hover:text-orange font-light mr-4">
                             LOG IN
                         </Link>
                         <Link to="/register" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-orange hover:border-transparent bg-orange hover:text-teal mt-4 lg:mt-0">REGISTER</Link>

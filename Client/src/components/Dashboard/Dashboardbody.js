@@ -22,7 +22,8 @@ import {
   ChevronRightIcon,
   OfficeBuildingIcon,
   SearchIcon,
-  GlobeAltIcon
+  GlobeAltIcon,
+  TrashIcon
 } from '@heroicons/react/solid'
 import whiteflame from "../assets/images/whiteflame.png";
 import profileicon from "../assets/images/profile2.png";
@@ -67,11 +68,7 @@ const transactions = [
   },
   // More transactions...
 ]
-const statusStyles = {
-  success: 'bg-green-100 text-green-800',
-  processing: 'bg-yellow-100 text-yellow-800',
-  failed: 'bg-gray-100 text-gray-800',
-}
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -289,7 +286,7 @@ export default function Example() {
               </ul>
 
               <nav
-                className="bg-white px-4 py-3 flex items-center justify-between border-t border-red"
+                className="bg-whiteshade px-4 py-3 flex items-center justify-between border-t border-red"
                 aria-label="Pagination"
               >
                 <div className="flex-1 flex justify-between">
@@ -320,12 +317,15 @@ export default function Example() {
                           <th className="px-6 py-5 text-left text-md font-xs text-white uppercase ">
                             Website
                           </th>
-                          <th className="px-6 py-5 text-right text-md font-xs text-white uppercase ">
+                          <th className="px-6 py-5 text-left text-md font-xs text-white uppercase mr-2 ">
                             Password
                           </th>
                          
-                          <th className="px-6 py-5  text-right text-md font-xs text-white uppercase">
+                          <th className="px-6 py-5  text-left text-md font-xs text-white uppercase mr-2">
                             Date
+                          </th>
+                          <th className="px-8 py-5  text-left text-md font-xs text-white uppercase mr-2">
+                             Trash
                           </th>
                         </tr>
                       </thead>
@@ -343,18 +343,31 @@ export default function Example() {
                                 </a>
                               </div>
                             </td>
-                            <td className="px-6 py-4 text-left whitespace-nowrap text-md text-gray-500">
+                            <td className="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-500">
                               <span className="text-gray-900 font-medium">{transaction.amount} </span>
                               
                             </td>
                             
                             <td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                              <time dateTime={transaction.datetime}>{transaction.date}</time>
+                              <time  dateTime={transaction.datetime}>{transaction.date}</time>
+                              
+                            </td>
+                            <td className="max-w-0 w-full px-6 bg-gray py-4 whitespace-nowrap content-center">
+                              <div className="flex">
+                                <button href={transaction.href} className="group ml-6 inline-flex space-x-2 truncate text-md">
+                                  <TrashIcon
+                                    className="flex-shrink-0 h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                 
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
+                    
                     {/* Pagination */}
                     <nav
                       className="bg-darkgrey px-4 py-3 flex items-center justify-between border-t border-black sm:px-6"
@@ -367,9 +380,12 @@ export default function Example() {
                         </p>
                       </div>
                       <div className="flex-1 flex justify-between sm:justify-end">
+                      <button type="button" className="relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-white bg-darkgrey hover:bg-gray-50">
+                          Add
+                        </button>
                         <a
                           href="#"
-                          className="relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-white bg-darkgrey hover:bg-gray-50"
+                          className="ml-3 relative inline-flex items-center px-4 py-2 border border-black text-sm font-medium rounded-md text-white bg-darkgrey hover:bg-gray-50"
                         >
                           Previous
                         </a>
