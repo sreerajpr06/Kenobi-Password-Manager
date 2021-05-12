@@ -19,9 +19,11 @@ connection.once( 'open' , () => {
 
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const dashboardRouter = require('./routes/dashboard');
 
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/dashboard', dashboardRouter);
 
 app.listen(port, () => {
     console.log("Port: " + port);
