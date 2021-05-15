@@ -3,30 +3,141 @@ import React from "react";
 function TeamBody(){
     return(
         <body>
-        <div class="max-w-md w-full lg:flex">
-  <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
-  </div>
-  <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-    <div class="mb-8">
-      <p class="text-sm text-grey-dark flex items-center">
-        <svg class="text-grey w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-        </svg>
-        Members only
-      </p>
-      <div class="text-black font-bold text-xl mb-2">Can coffee make you a better developer?</div>
-      <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+
+<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
+    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&w=128&h=128&q=60&facepad=2"
+             alt=""
+             class="h-full w-full"/>
     </div>
-    <div class="flex items-center">
-      <img class="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="Avatar of Jonathan Reinink"></img>
-      <div class="text-sm">
-        <p class="text-black leading-none">Jonathan Reinink</p>
-        <p class="text-grey-dark">Aug 18</p>
-      </div>
-    </div>
-  </div>
+
+    <h2 class="mt-4 font-bold text-xl">Sebastian Bennett</h2>
+    <h6 class="mt-2 text-sm font-medium">Founder</h6>
+
+    <p class="text-xs text-gray-500 text-center mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab enim molestiae nulla.
+    </p>
+
+    <ul class="flex flex-row mt-4 space-x-2">
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+    </ul>
 </div>
 
+<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
+    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&w=128&h=128&q=60&facepad=2"
+             alt=""
+             class="h-full w-full"/>
+    </div>
+
+    <h2 class="mt-4 font-bold text-xl">Sebastian Bennett</h2>
+    <h6 class="mt-2 text-sm font-medium">Founder</h6>
+
+    <p class="text-xs text-gray-500 text-center mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab enim molestiae nulla.
+    </p>
+
+    <ul class="flex flex-row mt-4 space-x-2">
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
+    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&w=128&h=128&q=60&facepad=2"
+             alt=""
+             class="h-full w-full"/>
+    </div>
+
+    <h2 class="mt-4 font-bold text-xl">Sebastian Bennett</h2>
+    <h6 class="mt-2 text-sm font-medium">Founder</h6>
+
+    <p class="text-xs text-gray-500 text-center mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab enim molestiae nulla.
+    </p>
+
+    <ul class="flex flex-row mt-4 space-x-2">
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
+    <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&w=128&h=128&q=60&facepad=2"
+             alt=""
+             class="h-full w-full"/>
+    </div>
+
+    <h2 class="mt-4 font-bold text-xl">Sebastian Bennett</h2>
+    <h6 class="mt-2 text-sm font-medium">Founder</h6>
+
+    <p class="text-xs text-gray-500 text-center mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab enim molestiae nulla.
+    </p>
+
+    <ul class="flex flex-row mt-4 space-x-2">
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+</div>
 	</body>
 
         
