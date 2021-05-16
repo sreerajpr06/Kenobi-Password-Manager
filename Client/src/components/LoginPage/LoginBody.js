@@ -1,5 +1,6 @@
 import dog from "../assets/images/23.png";
 import { useState } from "react";
+import axios from "axios";
 import { pbkdf, genAllSubKeys, encrypt, decrypt } from "../../libs/aes";
 
 function LoginBody() {
@@ -9,11 +10,22 @@ function LoginBody() {
     function login(e) {
         var key = pbkdf(email, pwd);
         var subKey = genAllSubKeys(key);
+        var cipher = encrypt(subKey, key);
 
-        var cipher = encrypt(subKey, pwd);
-        console.log(cipher);
-        var plain = decrypt(subKey, cipher);
-        console.log(plain);
+        axios
+            .get("http://localhost:5000/login", {
+                params: {
+                    username: email,
+                },
+            })
+            .then((res) => {
+                var password = res.data.details[0].password;
+                if (password === cipher) {
+                    console.log("Success");
+                } else {
+                    console.log("Failed");
+                }
+            });
     }
 
     return (
