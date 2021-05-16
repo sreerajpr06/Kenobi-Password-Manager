@@ -541,7 +541,7 @@ function formatMsg(msg) {
     for (var i = 0; i < msg.length; i += 4) {
         var msgRow = [];
         for (var j = 0; j < 4; ++j) {
-            msgRow.push(msg.charCodeAt(i + j));
+            msgRow.push(msg[i + j]);
         }
         msgHex.push(msgRow);
     }
@@ -723,7 +723,11 @@ function decrypt(subKey, msg) {
     var cipherText = "";
     msgHex.forEach((i) => {
         i.forEach((j) => {
-            cipherText += String.fromCharCode(j);
+            if (j > 0) {
+                cipherText += String.fromCharCode(j);
+            } else {
+                cipherText += "";
+            }
         });
     });
     return cipherText;
