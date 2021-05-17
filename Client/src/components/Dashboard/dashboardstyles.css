@@ -1,0 +1,169 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+.main-wrapper {
+    height: 100%;
+}
+
+.main-wrapper {
+    height: 100%;
+    background-color: rgb(60, 63, 67);
+}
+
+.dashboard-wrapper {
+    padding: 40px 80px 0px;
+    color: #fff;
+}
+
+.heading {
+    color: rgb(229, 155, 44);
+}
+
+.button-add {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.button-add:hover {
+    background-color: rgb(48, 47, 47);
+}
+
+.heading .element-plus {
+    font-size: 1.7rem;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-5%);
+}
+
+.content-wrapper {
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.heading-wrapper {
+    width: 100%;
+    display: flex;
+    background-color: rgb(229, 155, 44);
+}
+
+.heading-item {
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 25%;
+}
+
+.password-wrapper {
+    width: 100%;
+    display: flex;
+    background-color: rgba(229, 155, 44, 0.158);
+}
+
+.password-item {
+    padding: 5px 20px;
+    border: 1px solid black;
+    font-size: 1.2rem;
+    width: 25%;
+}
+
+/* Password Window */
+
+.password-window-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.459);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.password-window-box {
+    width: 40%;
+    height: 60%;
+    border-radius: 10px;
+    margin-top: 70px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: createBox 0.3s;
+}
+
+@keyframes createBox {
+    0% {
+        transform: scale(0);
+    }
+    90% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.password-window-box-heading {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.password-window-item {
+    padding: 10px 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #000;
+    font-weight: bold;
+}
+
+.password-window-item input {
+    border-radius: 5px;
+}
+
+.password-window-buttons {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.password-window-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(229, 155, 44);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.747);
+    padding: 5px 30px;
+    cursor: pointer;
+}
+
+.password-window-button:hover {
+    background-color: rgba(0, 0, 0, 0.897);
+}
