@@ -3,18 +3,11 @@ import { useState } from "react";
 import axios from "axios";
 import { pbkdf, genAllSubKeys, encrypt, decrypt } from "../../libs/aes";
 
-function LoginBody(props) {
+function LoginBody({ props }) {
     const [email, setEmail] = useState("");
     const [pwd, setPassword] = useState("");
 
     function login(e) {
-        props.props.history.push({
-            pathname: "/dashboard",
-            state: {
-                email: email,
-            },
-        });
-        return;
         var key = pbkdf(email, pwd);
         var subKey = genAllSubKeys(key);
         var cipher = encrypt(subKey, key);
@@ -26,12 +19,27 @@ function LoginBody(props) {
                 },
             })
             .then((res) => {
-                var password = res.data.details[0].password;
-                if (password === cipher) {
-                    console.log("Success");
+                if (typeof res.data !== "undefined" || res.data.length === 0) {
+                    console.log(res.data);
+                    var password = res.data[0].password;
+                    if (password === cipher) {
+                        props.history.push({
+                            pathname: "/dashboard",
+                            state: {
+                                email: email,
+                                subKey: subKey,
+                            },
+                        });
+                    } else {
+                        alert("Incorrect Password");
+                    }
                 } else {
-                    console.log("Failed");
+                    alert("Incorrect Email");
                 }
+            })
+            .catch((err) => {
+                console.log(err);
+                alert("Some error occured. Please try again later");
             });
     }
 
@@ -104,7 +112,9 @@ function LoginBody(props) {
                                 <div class="text-center">
                                     <a
                                         class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"
-                                        href="./index.html"
+                                        onClick={(e) => {
+                                            props.history.push("/register");
+                                        }}
                                     >
                                         Don't have an account yet? Register!
                                     </a>

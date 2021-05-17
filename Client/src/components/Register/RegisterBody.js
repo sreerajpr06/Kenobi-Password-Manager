@@ -3,7 +3,7 @@ import dog from "../assets/images/23.png";
 import axios from "axios";
 import { pbkdf, genAllSubKeys, encrypt } from "../../libs/aes";
 
-function RegisterBody() {
+function RegisterBody({ props }) {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const [repwd, setRePwd] = useState("");
@@ -166,7 +166,9 @@ function RegisterBody() {
                                 <div class="text-center">
                                     <a
                                         class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"
-                                        href="./index.html"
+                                        onClick={(e) => {
+                                            props.history.push("/login");
+                                        }}
                                     >
                                         Already have an account? Login!
                                     </a>
