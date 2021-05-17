@@ -28,15 +28,19 @@ export default function Dashboardbody(props) {
     }
 
     function onAdd(site, login, pwd) {
-        setPasswords([
-            ...passwords,
-            {
-                site: site,
-                login: login,
-                password: pwd,
-            },
-        ]);
-        setPwdWindowClass(!pwdWindowClass);
+        if (site !== "" && login !== "" && pwd !== "") {
+            setPasswords([
+                ...passwords,
+                {
+                    site: site,
+                    login: login,
+                    password: pwd,
+                },
+            ]);
+            setPwdWindowClass(!pwdWindowClass);
+        } else {
+            alert("Fields cannot be empty!");
+        }
     }
 
     return (
