@@ -3,11 +3,18 @@ import { useState } from "react";
 import axios from "axios";
 import { pbkdf, genAllSubKeys, encrypt, decrypt } from "../../libs/aes";
 
-function LoginBody() {
+function LoginBody(props) {
     const [email, setEmail] = useState("");
     const [pwd, setPassword] = useState("");
 
     function login(e) {
+        props.props.history.push({
+            pathname: "/dashboard",
+            state: {
+                email: email,
+            },
+        });
+        return;
         var key = pbkdf(email, pwd);
         var subKey = genAllSubKeys(key);
         var cipher = encrypt(subKey, key);
