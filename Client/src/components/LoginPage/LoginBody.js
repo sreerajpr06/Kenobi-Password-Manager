@@ -1,7 +1,7 @@
 import dog from "../assets/images/23.png";
 import { useState } from "react";
 import axios from "axios";
-import { pbkdf, genAllSubKeys, encrypt } from "../../libs/aes";
+import { pbkdf, genAllSubKeys, encrypt, decrypt } from "../../libs/aes";
 
 function LoginBody(props) {
     const [email, setEmail] = useState("");

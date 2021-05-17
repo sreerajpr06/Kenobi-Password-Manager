@@ -29,7 +29,6 @@ export default function Dashboardbody({ props }) {
         if (typeof props.location.state !== "undefined") {
             setEmail(props.location.state.email);
         }
-        console.log(email);
     }, []);
 
     function onShowPasswordWindow(e) {
@@ -99,7 +98,7 @@ export default function Dashboardbody({ props }) {
                     <div className="password-body-wrapper">
                         {passwords.map((password, index) => {
                             return (
-                                <div key={index} className="password-wrapper">
+                                <div className="password-wrapper">
                                     <div className="password-item">
                                         {password.site}
                                     </div>
