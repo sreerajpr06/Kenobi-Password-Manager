@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import dog from "../assets/images/23.png";
 import axios from "axios";
-import { pbkdf, genAllSubKeys, encrypt, decrypt } from "../../libs/aes";
+import { pbkdf, genAllSubKeys, encrypt } from "../../libs/aes";
 
 function RegisterBody() {
     const [email, setEmail] = useState("");
@@ -37,7 +37,6 @@ function RegisterBody() {
                 password: cipher,
             },
         ];
-        const password = "";
 
         const user = {
             username: email,
@@ -47,7 +46,7 @@ function RegisterBody() {
         axios
             .post("http://localhost:5000/users/add", user)
             .then((res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     alert("User Added!");
                 }
             })

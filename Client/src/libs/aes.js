@@ -341,17 +341,6 @@ const galoisMul14 = [
     0x9f, 0x91, 0x83, 0x8d,
 ];
 
-// Print 2D arrays
-function display2D(array2D) {
-    array2D.forEach((i) => {
-        var row = "";
-        i.forEach((j) => {
-            row += j;
-        });
-        console.log(row);
-    });
-}
-
 // Rotate a column by an offset
 // For example [1, 2, 3, 4] with offset 1
 // will result in [2, 3, 4, 1]
@@ -441,11 +430,11 @@ function mixColumnsForward(msgState) {
         for (var j = 0; j < 4; ++j) {
             var val = 0;
             for (var z = 0; z < 4; ++z) {
-                if (mixColsForward[j][z] == 1) {
+                if (mixColsForward[j][z] === 1) {
                     val ^= msgState[i][z];
-                } else if (mixColsForward[j][z] == 2) {
+                } else if (mixColsForward[j][z] === 2) {
                     val ^= galoisMul2[msgState[i][z]];
-                } else if (mixColsForward[j][z] == 3) {
+                } else if (mixColsForward[j][z] === 3) {
                     val ^= galoisMul3[msgState[i][z]];
                 }
             }
@@ -463,13 +452,13 @@ function mixColumnsBackward(msgState) {
         for (var j = 0; j < 4; ++j) {
             var val = 0;
             for (var z = 0; z < 4; ++z) {
-                if (mixColsBackward[j][z] == 9) {
+                if (mixColsBackward[j][z] === 9) {
                     val ^= galoisMul9[msgState[i][z]];
-                } else if (mixColsBackward[j][z] == 11) {
+                } else if (mixColsBackward[j][z] === 11) {
                     val ^= galoisMul11[msgState[i][z]];
-                } else if (mixColsBackward[j][z] == 13) {
+                } else if (mixColsBackward[j][z] === 13) {
                     val ^= galoisMul13[msgState[i][z]];
-                } else if (mixColsBackward[j][z] == 14) {
+                } else if (mixColsBackward[j][z] === 14) {
                     val ^= galoisMul14[msgState[i][z]];
                 }
             }
@@ -509,13 +498,13 @@ function genSubKey(subKeyNumber, subKey) {
     newSubKey.push(xorWord(subKey[2], newSubKey[1]));
     newSubKey.push(xorWord(subKey[3], newSubKey[2]));
 
-    for (var i = 0; i < 4; ++i) {
+    for (i = 0; i < 4; ++i) {
         subByteColumn[i] = forwardSubByte(newSubKey[3][i]);
     }
 
     newSubKey.push(xorWord(subKey[4], subByteColumn));
 
-    for (var i = 5; i < 16; ++i) {
+    for (i = 5; i < 16; ++i) {
         newSubKey.push(xorWord(subKey[i], newSubKey[i - 1]));
     }
 
@@ -560,7 +549,7 @@ function genAllSubKeys(key) {
         }
         zeroKeyHex.push(zeroKeyRow);
     }
-    for (var i = 0; i < 23; ++i) {
+    for (i = 0; i < 23; ++i) {
         subKey.push(zeroKeyHex);
     }
 
@@ -568,7 +557,7 @@ function genAllSubKeys(key) {
 
     // Generate Subkeys
     subKey[0] = Array.from(keyHex);
-    for (var i = 1; i < 23; ++i) {
+    for (i = 1; i < 23; ++i) {
         subKey[i] = genSubKey(
             i,
             [...subKey[i - 1]].map((nested) => {
@@ -736,7 +725,6 @@ function decrypt(subKey, msg) {
 function pbkdf(email, pwd) {
     var hash = 0,
         i,
-        chr,
         lpwd = 0,
         lemail = 0;
     var fin = [];
