@@ -1,12 +1,16 @@
 import { Fragment, useEffect, useState } from "react";
 import PasswordWindow from "./PasswordWindow";
 
-export default function Dashboardbody(props) {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [email, setEmail] = useState(
-        props.props.history.location.state.email
-    );
-    const [pwdWindowClass, setPwdWindowClass] = useState(true);
+export default function Dashboardbody({ props }) {
+    const [email, setEmail] = useState("");
+    const [pwdWindowClass, setPwdWindowClass] = useState(false);
+    const [showPasswordIndex, setShowPasswordIndex] = useState(-1);
+    const [passwordWindowPackage, setPasswordWindowPackage] = useState({
+        site: "",
+        email: "",
+        password: "",
+        index: -1,
+    });
     const [passwords, setPasswords] = useState([
         {
             site: "www.google.com",
@@ -21,26 +25,50 @@ export default function Dashboardbody(props) {
         // More passwords...
     ]);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        if (typeof props.location.state !== "undefined") {
+            setEmail(props.location.state.email);
+        }
+    }, []);
 
     function onShowPasswordWindow(e) {
         setPwdWindowClass(!pwdWindowClass);
     }
 
-    function onAdd(site, login, pwd) {
+    function onAdd(site, login, pwd, index) {
         if (site !== "" && login !== "" && pwd !== "") {
-            setPasswords([
-                ...passwords,
-                {
-                    site: site,
-                    login: login,
-                    password: pwd,
-                },
-            ]);
+            if (index < 0) {
+                setPasswords([
+                    ...passwords,
+                    {
+                        site: site,
+                        login: login,
+                        password: pwd,
+                    },
+                ]);
+            } else {
+                setPasswords([
+                    ...passwords.slice(0, index),
+                    {
+                        ...passwords[index],
+                        site: site,
+                        login: login,
+                        password: pwd,
+                    },
+                    ...passwords.slice(index + 1),
+                ]);
+            }
             setPwdWindowClass(!pwdWindowClass);
         } else {
             alert("Fields cannot be empty!");
         }
+    }
+
+    function onDelete(index) {
+        setPasswords([
+            ...passwords.slice(0, index),
+            ...passwords.slice(index + 1),
+        ]);
     }
 
     return (
@@ -50,6 +78,7 @@ export default function Dashboardbody(props) {
                     <PasswordWindow
                         onCancel={onShowPasswordWindow}
                         onAdd={onAdd}
+                        values={passwordWindowPackage}
                     />
                 </div>
             ) : null}
@@ -67,7 +96,7 @@ export default function Dashboardbody(props) {
                         <div className="heading-item"></div>
                     </div>
                     <div className="password-body-wrapper">
-                        {passwords.map((password) => {
+                        {passwords.map((password, index) => {
                             return (
                                 <div className="password-wrapper">
                                     <div className="password-item">
@@ -77,9 +106,42 @@ export default function Dashboardbody(props) {
                                         {password.login}
                                     </div>
                                     <div className="password-item">
-                                        {password.password}
+                                        {showPasswordIndex !== index
+                                            ? "*".repeat(
+                                                  password.password.length
+                                              )
+                                            : password.password}
                                     </div>
-                                    <div className="password-item"></div>
+                                    <div className="password-item password-options">
+                                        <div
+                                            className="far fa-eye"
+                                            onClick={(e) => {
+                                                showPasswordIndex === index
+                                                    ? setShowPasswordIndex(-1)
+                                                    : setShowPasswordIndex(
+                                                          index
+                                                      );
+                                            }}
+                                        ></div>
+                                        <div
+                                            className="far fa-edit"
+                                            onClick={(e) => {
+                                                setPasswordWindowPackage({
+                                                    site: password.site,
+                                                    email: password.login,
+                                                    password: password.password,
+                                                    index: index,
+                                                });
+                                                onShowPasswordWindow(e);
+                                            }}
+                                        ></div>
+                                        <div
+                                            className="far fa-trash-alt"
+                                            onClick={(e) => {
+                                                onDelete(index);
+                                            }}
+                                        ></div>
+                                    </div>
                                 </div>
                             );
                         })}

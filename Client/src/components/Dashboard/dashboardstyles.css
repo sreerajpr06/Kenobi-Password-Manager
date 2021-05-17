@@ -87,6 +87,25 @@ body {
     width: 25%;
 }
 
+.password-options {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.password-options div {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.418);
+}
+
+.password-options div:hover {
+    color: #fff;
+}
+
+.password-options div:last-child:hover {
+    color: red;
+}
+
 /* Password Window */
 
 .password-window-wrapper {
