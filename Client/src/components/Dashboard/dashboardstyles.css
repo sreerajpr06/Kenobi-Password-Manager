@@ -26,6 +26,11 @@ body {
 
 .heading {
     color: rgb(229, 155, 44);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    padding: 0px 20px;
 }
 
 .button-add {
@@ -85,6 +90,16 @@ body {
     border: 1px solid black;
     font-size: 1.2rem;
     width: 25%;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
 }
 
 .password-options {

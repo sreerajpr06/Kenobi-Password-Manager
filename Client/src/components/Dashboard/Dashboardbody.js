@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import PasswordWindow from "./PasswordWindow";
 
@@ -11,23 +12,25 @@ export default function Dashboardbody({ props }) {
         password: "",
         index: -1,
     });
-    const [passwords, setPasswords] = useState([
-        {
-            site: "www.google.com",
-            login: "sidhantunnithan",
-            password: "uwjivji",
-        },
-        {
-            site: "www.facebook.com",
-            login: "itachiuchiha",
-            password: "djkvnalksnd",
-        },
-        // More passwords...
-    ]);
+    const [passwords, setPasswords] = useState([]);
 
-    useEffect(() => {
-        if (typeof props.location.state !== "undefined") {
-            setEmail(props.location.state.email);
+    useEffect(async () => {
+        if (
+            typeof props.location.state !== "undefined" &&
+            typeof props.location.state.email !== "undefined"
+        ) {
+            axios
+                .get("http://localhost:5000/dashboard/all", {
+                    params: {
+                        username: props.location.state.email,
+                    },
+                })
+                .then((res) => {
+                    setPasswords(res.data.details.slice(1));
+                    setEmail(props.location.state.email);
+                });
+        } else {
+            props.history.push("/login");
         }
     }, []);
 
@@ -38,14 +41,18 @@ export default function Dashboardbody({ props }) {
     function onAdd(site, login, pwd, index) {
         if (site !== "" && login !== "" && pwd !== "") {
             if (index < 0) {
-                setPasswords([
-                    ...passwords,
-                    {
-                        site: site,
-                        login: login,
-                        password: pwd,
-                    },
-                ]);
+                axios
+                    .post("http://localhost:5000/dashboard/add", {
+                        params: {
+                            username: props.location.state.email,
+                            site: site,
+                            usernameSite: login,
+                            password: pwd,
+                        },
+                    })
+                    .then((res) => {
+                        setPasswords(res.data.details.slice(1));
+                    });
             } else {
                 setPasswords([
                     ...passwords.slice(0, index),
@@ -65,10 +72,17 @@ export default function Dashboardbody({ props }) {
     }
 
     function onDelete(index) {
-        setPasswords([
-            ...passwords.slice(0, index),
-            ...passwords.slice(index + 1),
-        ]);
+        axios
+            .post("http://localhost:5000/dashboard/delete", {
+                params: {
+                    username: props.location.state.email,
+                    site: passwords[index].site,
+                    usernameSite: passwords[index].login,
+                },
+            })
+            .then((res) => {
+                setPasswords(res.data.details.slice(1));
+            });
     }
 
     return (
@@ -84,7 +98,19 @@ export default function Dashboardbody({ props }) {
             ) : null}
             <div className="dashboard-wrapper">
                 <h1 className="heading">
-                    <div className="button-add" onClick={onShowPasswordWindow}>
+                    {email}
+                    <div
+                        className="button-add"
+                        onClick={(e) => {
+                            setPasswordWindowPackage({
+                                site: "",
+                                email: "",
+                                password: "",
+                                index: -1,
+                            });
+                            onShowPasswordWindow(e);
+                        }}
+                    >
                         <span className="element-plus">+</span>ADD
                     </div>
                 </h1>
@@ -103,7 +129,7 @@ export default function Dashboardbody({ props }) {
                                         {password.site}
                                     </div>
                                     <div className="password-item">
-                                        {password.login}
+                                        {password.username}
                                     </div>
                                     <div className="password-item">
                                         {showPasswordIndex !== index
@@ -128,7 +154,7 @@ export default function Dashboardbody({ props }) {
                                             onClick={(e) => {
                                                 setPasswordWindowPackage({
                                                     site: password.site,
-                                                    email: password.login,
+                                                    email: password.username,
                                                     password: password.password,
                                                     index: index,
                                                 });
