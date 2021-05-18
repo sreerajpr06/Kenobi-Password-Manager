@@ -4,7 +4,7 @@ import PasswordWindow from "./PasswordWindow";
 import AlertBox from "../Alert Box/AlertBox";
 
 export default function Dashboardbody({ props }) {
-    const [email, setEmail] = useState("");
+    const [id, setID] = useState(0);
     const [pwdWindowClass, setPwdWindowClass] = useState(false);
     const [showPasswordIndex, setShowPasswordIndex] = useState(-1);
     const [passwordWindowPackage, setPasswordWindowPackage] = useState({
@@ -28,7 +28,7 @@ export default function Dashboardbody({ props }) {
                 })
                 .then((res) => {
                     setPasswords(res.data.details.slice(1));
-                    setEmail(props.location.state.email);
+                    setID(res.data._id);
                 });
         } else {
             props.history.push("/login");
@@ -56,27 +56,27 @@ export default function Dashboardbody({ props }) {
                     });
             } else {
                 axios
-                    .post("http://localhost:5000/dashboard/delete", {
+                    .post("http://localhost:5000/dashboard/edit", {
                         params: {
-                            username: props.location.state.email,
-                            site: passwords[index].site,
-                            usernameSite: passwords[index].login,
+                            id: id,
+                            detailsId: passwords[index]._id,
+                            site: site,
+                            username: login,
+                            password: pwd,
                         },
                     })
-                    .then((res) =>
-                        axios
-                            .post("http://localhost:5000/dashboard/add", {
-                                params: {
-                                    username: props.location.state.email,
-                                    site: site,
-                                    usernameSite: login,
-                                    password: pwd,
-                                },
-                            })
-                            .then((res) => {
-                                setPasswords(res.data.details.slice(1));
-                            })
-                    );
+                    .then((res) => {
+                        setPasswords([
+                            ...passwords.slice(0, index),
+                            {
+                                ...passwords[index],
+                                _id: passwords[index]._id,
+                                site: site,
+                                username: login,
+                                password: pwd,
+                            },
+                        ]);
+                    });
             }
             setPwdWindowClass(false);
         } else {
@@ -105,6 +105,7 @@ export default function Dashboardbody({ props }) {
     }
 
     const [alertWindowVisible, setAlertWindowVisible] = useState(false);
+    const [alertWindowIcon, setAlertWindowIcon] = useState("alert");
     const [title, setTitle] = useState("Test Title");
     const [message, setMessage] = useState(
         "test message to check message lol ol olol"
@@ -129,6 +130,7 @@ export default function Dashboardbody({ props }) {
             ) : null}
             {alertWindowVisible ? (
                 <AlertBox
+                    icon={alertWindowIcon}
                     title={title}
                     message={message}
                     onButtonClick={showAlert}
@@ -136,7 +138,10 @@ export default function Dashboardbody({ props }) {
             ) : null}
             <div className="dashboard-wrapper">
                 <h1 className="heading">
-                    {email}
+                    {typeof props.location.state !== "undefined" &&
+                    typeof props.location.state.email !== "undefined"
+                        ? props.location.state.email
+                        : ""}
                     <div
                         className="button-add"
                         onClick={(e) => {
