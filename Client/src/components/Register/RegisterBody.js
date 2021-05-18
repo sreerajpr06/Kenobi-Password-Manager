@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import dog from "../assets/images/23.png";
 import axios from "axios";
 import { pbkdf, genAllSubKeys, encrypt } from "../../libs/aes";
+import AlertBox from "../Alert Box/AlertBox";
 
 function RegisterBody({ props }) {
     const [email, setEmail] = useState("");
@@ -21,8 +22,19 @@ function RegisterBody({ props }) {
     }
 
     function addUser(e) {
+        if (email === "" || pwd === "") {
+            showAlert(
+                "Fields Empty",
+                "Email and Password field cannot be empty"
+            );
+            return;
+        }
+
         if (pwd !== repwd) {
-            alert("Passwords Don't Match");
+            showAlert(
+                "Passwords Don't Match",
+                "Please check passwords and try again"
+            );
             return;
         }
 
@@ -52,12 +64,33 @@ function RegisterBody({ props }) {
             })
             .catch((err) => {
                 console.log(err);
-                alert("Error!");
+                showAlert(
+                    "Error",
+                    "Some error occured. Please try again later"
+                );
             });
+    }
+
+    const [alertWindowVisible, setAlertWindowVisible] = useState(false);
+    const [title, setTitle] = useState("Test Title");
+    const [message, setMessage] = useState(
+        "test message to check message lol ol olol"
+    );
+    function showAlert(title, message) {
+        setTitle(title);
+        setMessage(message);
+        setAlertWindowVisible(!alertWindowVisible);
     }
 
     return (
         <body class="font-actor bg-lightgrey">
+            {alertWindowVisible ? (
+                <AlertBox
+                    title={title}
+                    message={message}
+                    onButtonClick={showAlert}
+                />
+            ) : null}
             <div class="container mx-auto">
                 <div class="flex justify-center p-20 my-0">
                     <div class="w-full xl:w-3/4 lg:w-11/12 flex my-3">

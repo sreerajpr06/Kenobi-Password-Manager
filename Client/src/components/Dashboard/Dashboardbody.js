@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import PasswordWindow from "./PasswordWindow";
+import AlertBox from "../Alert Box/AlertBox";
 
 export default function Dashboardbody({ props }) {
     const [email, setEmail] = useState("");
@@ -34,8 +35,8 @@ export default function Dashboardbody({ props }) {
         }
     }, []);
 
-    function onShowPasswordWindow(e) {
-        setPwdWindowClass(!pwdWindowClass);
+    function onShowPasswordWindow(pwdShow) {
+        setPwdWindowClass(pwdShow);
     }
 
     function onAdd(site, login, pwd, index) {
@@ -54,20 +55,38 @@ export default function Dashboardbody({ props }) {
                         setPasswords(res.data.details.slice(1));
                     });
             } else {
-                setPasswords([
-                    ...passwords.slice(0, index),
-                    {
-                        ...passwords[index],
-                        site: site,
-                        login: login,
-                        password: pwd,
-                    },
-                    ...passwords.slice(index + 1),
-                ]);
+                axios
+                    .post("http://localhost:5000/dashboard/delete", {
+                        params: {
+                            username: props.location.state.email,
+                            site: passwords[index].site,
+                            usernameSite: passwords[index].login,
+                        },
+                    })
+                    .then((res) =>
+                        axios
+                            .post("http://localhost:5000/dashboard/add", {
+                                params: {
+                                    username: props.location.state.email,
+                                    site: site,
+                                    usernameSite: login,
+                                    password: pwd,
+                                },
+                            })
+                            .then((res) => {
+                                setPasswords(res.data.details.slice(1));
+                            })
+                    );
             }
-            setPwdWindowClass(!pwdWindowClass);
+            setPwdWindowClass(false);
         } else {
-            alert("Fields cannot be empty!");
+            setPasswordWindowPackage({
+                site: site,
+                email: login,
+                password: pwd,
+                index: index,
+            });
+            showAlert("Empty Fields", "Fields cannot be empty");
         }
     }
 
@@ -85,6 +104,18 @@ export default function Dashboardbody({ props }) {
             });
     }
 
+    const [alertWindowVisible, setAlertWindowVisible] = useState(false);
+    const [title, setTitle] = useState("Test Title");
+    const [message, setMessage] = useState(
+        "test message to check message lol ol olol"
+    );
+    function showAlert(title, message) {
+        setTitle(title);
+        setMessage(message);
+        onShowPasswordWindow(title === "" ? true : false);
+        setAlertWindowVisible(!alertWindowVisible);
+    }
+
     return (
         <>
             {pwdWindowClass ? (
@@ -95,6 +126,13 @@ export default function Dashboardbody({ props }) {
                         values={passwordWindowPackage}
                     />
                 </div>
+            ) : null}
+            {alertWindowVisible ? (
+                <AlertBox
+                    title={title}
+                    message={message}
+                    onButtonClick={showAlert}
+                />
             ) : null}
             <div className="dashboard-wrapper">
                 <h1 className="heading">
@@ -108,7 +146,7 @@ export default function Dashboardbody({ props }) {
                                 password: "",
                                 index: -1,
                             });
-                            onShowPasswordWindow(e);
+                            onShowPasswordWindow(true);
                         }}
                     >
                         <span className="element-plus">+</span>ADD
@@ -158,7 +196,7 @@ export default function Dashboardbody({ props }) {
                                                     password: password.password,
                                                     index: index,
                                                 });
-                                                onShowPasswordWindow(e);
+                                                onShowPasswordWindow(true);
                                             }}
                                         ></div>
                                         <div
