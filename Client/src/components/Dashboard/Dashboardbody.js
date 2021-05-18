@@ -41,28 +41,43 @@ export default function Dashboardbody({ props }) {
 
     function onAdd(site, login, pwd, index) {
         if (site !== "" && login !== "" && pwd !== "") {
-            axios
-                .post("http://localhost:5000/dashboard/delete", {
-                    params: {
-                        username: props.location.state.email,
-                        site: passwords[index].site,
-                        usernameSite: passwords[index].login,
-                    },
-                })
-                .then((res) =>
-                    axios
-                        .post("http://localhost:5000/dashboard/add", {
-                            params: {
-                                username: props.location.state.email,
-                                site: site,
-                                usernameSite: login,
-                                password: pwd,
-                            },
-                        })
-                        .then((res) => {
-                            setPasswords(res.data.details.slice(1));
-                        })
-                );
+            if (index < 0) {
+                axios
+                    .post("http://localhost:5000/dashboard/add", {
+                        params: {
+                            username: props.location.state.email,
+                            site: site,
+                            usernameSite: login,
+                            password: pwd,
+                        },
+                    })
+                    .then((res) => {
+                        setPasswords(res.data.details.slice(1));
+                    });
+            } else {
+                axios
+                    .post("http://localhost:5000/dashboard/delete", {
+                        params: {
+                            username: props.location.state.email,
+                            site: passwords[index].site,
+                            usernameSite: passwords[index].login,
+                        },
+                    })
+                    .then((res) =>
+                        axios
+                            .post("http://localhost:5000/dashboard/add", {
+                                params: {
+                                    username: props.location.state.email,
+                                    site: site,
+                                    usernameSite: login,
+                                    password: pwd,
+                                },
+                            })
+                            .then((res) => {
+                                setPasswords(res.data.details.slice(1));
+                            })
+                    );
+            }
             setPwdWindowClass(false);
         } else {
             setPasswordWindowPackage({
