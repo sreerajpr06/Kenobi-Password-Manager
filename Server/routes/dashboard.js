@@ -12,7 +12,7 @@ let User = require("../models/user.model");
 
 // Get all passwords
 router.route("/all").get((req, res) => {
-    const username = req.body.username;
+    const username = req.query.username;
 
     User.findOne({ username: { $eq: username } })
         .then((user) => res.json(user))
@@ -21,10 +21,10 @@ router.route("/all").get((req, res) => {
 
 // Add a new site and it's username & password
 router.route("/add").post((req, res) => {
-    const username = req.body.username;
-    const site = req.body.site;
-    const usernameSite = req.body.usernameSite;
-    const password = req.body.password;
+    const username = req.body.params.username;
+    const site = req.body.params.site;
+    const usernameSite = req.body.params.usernameSite;
+    const password = req.body.params.password;
     const newData = {
         site: site,
         username: usernameSite,
@@ -51,9 +51,9 @@ router.route("/add").post((req, res) => {
 
 // Delete the details of an existing site, using website url & username
 router.route("/delete").post((req, res) => {
-    const username = req.body.username;
-    const site = req.body.site;
-    const usernameSite = req.body.usernameSite;
+    const username = req.body.params.username;
+    const site = req.body.params.site;
+    const usernameSite = req.body.params.usernameSite;
 
     User.findOne({ username: { $eq: username } })
         .then((user) => {

@@ -1,12 +1,14 @@
 import React from "react";
 import DashHeader from "../DashHeader";
 import Dashboardbody from "./Dashboardbody";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "./dashboardstyles.css";
 
-export default function AboutPage(){
-    return(
-        <div>
+export default function Dashboard(props) {
+    return (
+        <div className="main-wrapper">
             <DashHeader />
-            <Dashboardbody />
+            <Dashboardbody props={props} />
         </div>
-    )
+    );
 }

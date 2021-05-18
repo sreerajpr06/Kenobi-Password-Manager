@@ -22,7 +22,7 @@ connection
     .once("open", () => {
         console.log("MongoDB connection established");
     })
-    .catch((err) => {
+    .on("error", function (err) {
         console.log(err);
     });
 
