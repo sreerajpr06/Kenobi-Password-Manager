@@ -60,7 +60,7 @@ export default function PasswordWindow(props) {
                 </div>
                 <div
                     className="password-window-button"
-                    onClick={props.onCancel}
+                    onClick={(e) => props.onCancel(false)}
                 >
                     CANCEL
                 </div>
