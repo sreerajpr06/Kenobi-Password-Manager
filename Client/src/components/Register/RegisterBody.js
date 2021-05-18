@@ -59,7 +59,11 @@ function RegisterBody({ props }) {
             .post("http://localhost:5000/users/add", user)
             .then((res) => {
                 if (res.status === 200) {
-                    alert("User Added!");
+                    setAlertWindowIcon("info");
+                    showAlert(
+                        "Account successfully made!",
+                        "Please log in to continue"
+                    );
                 }
             })
             .catch((err) => {
@@ -72,6 +76,7 @@ function RegisterBody({ props }) {
     }
 
     const [alertWindowVisible, setAlertWindowVisible] = useState(false);
+    const [alertWindowIcon, setAlertWindowIcon] = useState("alert");
     const [title, setTitle] = useState("Test Title");
     const [message, setMessage] = useState(
         "test message to check message lol ol olol"
@@ -86,6 +91,7 @@ function RegisterBody({ props }) {
         <body class="font-actor bg-lightgrey">
             {alertWindowVisible ? (
                 <AlertBox
+                    icon={alertWindowIcon}
                     title={title}
                     message={message}
                     onButtonClick={showAlert}
@@ -105,10 +111,7 @@ function RegisterBody({ props }) {
                             <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                                 <div class="mb-4 md:flex md:justify-between">
                                     <div class="mb-4 md:mr-2 md:mb-0">
-                                        <label
-                                            class="block mb-2 text-sm font-bold text-gray-700"
-                                            for="firstName"
-                                        >
+                                        <label class="block mb-2 text-sm font-bold text-gray-700">
                                             First Name
                                         </label>
                                         <input
@@ -119,10 +122,7 @@ function RegisterBody({ props }) {
                                         />
                                     </div>
                                     <div class="md:ml-2">
-                                        <label
-                                            class="block mb-2 text-sm font-bold text-gray-700"
-                                            for="lastName"
-                                        >
+                                        <label class="block mb-2 text-sm font-bold text-gray-700">
                                             Last Name
                                         </label>
                                         <input
@@ -134,10 +134,7 @@ function RegisterBody({ props }) {
                                     </div>
                                 </div>
                                 <div class="mb-2">
-                                    <label
-                                        class="block mb-2 text-sm font-bold text-gray-700"
-                                        for="email"
-                                    >
+                                    <label class="block mb-2 text-sm font-bold text-gray-700">
                                         Email
                                     </label>
                                     <input
@@ -150,10 +147,7 @@ function RegisterBody({ props }) {
                                 </div>
                                 <div class="mb-8 md:flex md:justify-between">
                                     <div class="mb-4 md:mr-2 md:mb-0">
-                                        <label
-                                            class="block mb-2 text-sm font-bold text-gray-700"
-                                            for="password"
-                                        >
+                                        <label class="block mb-2 text-sm font-bold text-gray-700">
                                             Password
                                         </label>
                                         <input
@@ -168,10 +162,7 @@ function RegisterBody({ props }) {
                                         </p>
                                     </div>
                                     <div class="md:ml-2">
-                                        <label
-                                            class="block mb-2 text-sm font-bold text-gray-700"
-                                            for="c_password"
-                                        >
+                                        <label class="block mb-2 text-sm font-bold text-gray-700">
                                             Confirm Password
                                         </label>
                                         <input
@@ -199,6 +190,7 @@ function RegisterBody({ props }) {
                                 <div class="text-center">
                                     <a
                                         class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"
+                                        href="#"
                                         onClick={(e) => {
                                             props.history.push("/login");
                                         }}
