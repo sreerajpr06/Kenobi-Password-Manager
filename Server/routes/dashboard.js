@@ -10,6 +10,7 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
 
+
 // Get all passwords
 router.route("/all").get((req, res) => {
     const username = req.query.username;
@@ -18,6 +19,7 @@ router.route("/all").get((req, res) => {
         .then((user) => res.json(user))
         .catch((err) => res.status(400).json("Error: " + err));
 });
+
 
 // Add a new site and it's username & password
 router.route("/add").post((req, res) => {
@@ -48,6 +50,33 @@ router.route("/add").post((req, res) => {
         })
         .catch((err) => res.status(400).json("Error: " + err));
 });
+
+
+// Edit the details of an existing site, using website url & username
+router.route("/edit").post((req, res) => {
+    const userId = req.body.id;
+    const detailsId = req.body.detailsId;
+    const newSite = req.body.site;
+    const newUsername = req.body.username;
+    const newPassword = req.body.password;
+
+    // Finds the document by _id, then finds the subdocument with id of 
+    // the subdocument
+    User.findById(userId)
+        .then(
+            user => {
+                user.details.id(detailsId).site = newSite;
+                user.details.id(detailsId).username = newUsername;
+                user.details.id(detailsId).password = newPassword;
+
+                user.save();
+                res.json(user.details.id(detailsId));
+            }
+        )
+        .catch( err => res.status(400).json("Error: " + err));
+
+});
+
 
 // Delete the details of an existing site, using website url & username
 router.route("/delete").post((req, res) => {
