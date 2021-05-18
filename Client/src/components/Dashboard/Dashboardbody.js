@@ -2,6 +2,7 @@ import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import PasswordWindow from "./PasswordWindow";
 import AlertBox from "../Alert Box/AlertBox";
+import { encrypt, decrypt, convertMsgToArray } from "../../libs/aes";
 
 export default function Dashboardbody({ props }) {
     const [id, setID] = useState(0);
@@ -18,7 +19,8 @@ export default function Dashboardbody({ props }) {
     useEffect(async () => {
         if (
             typeof props.location.state !== "undefined" &&
-            typeof props.location.state.email !== "undefined"
+            typeof props.location.state.email !== "undefined" &&
+            typeof props.location.state.subKeys !== "undefined"
         ) {
             axios
                 .get("http://localhost:5000/dashboard/all", {
@@ -27,7 +29,20 @@ export default function Dashboardbody({ props }) {
                     },
                 })
                 .then((res) => {
-                    setPasswords(res.data.details.slice(1));
+                    var passwds = [...res.data.details.slice(1)].map(
+                        (detail) => {
+                            return {
+                                _id: detail._id,
+                                site: detail.site,
+                                username: detail.username,
+                                password: decrypt(
+                                    [...props.location.state.subKeys],
+                                    convertMsgToArray(detail.password)
+                                ),
+                            };
+                        }
+                    );
+                    setPasswords(passwds);
                     setID(res.data._id);
                 });
         } else {
@@ -48,13 +63,29 @@ export default function Dashboardbody({ props }) {
                             username: props.location.state.email,
                             site: site,
                             usernameSite: login,
-                            password: pwd,
+                            password: encrypt(
+                                [...props.location.state.subKeys],
+                                convertMsgToArray(" ".repeat(16) + pwd).slice(
+                                    -16
+                                )
+                            ),
                         },
                     })
                     .then((res) => {
-                        setPasswords(res.data.details.slice(1));
+                        setPasswords([
+                            ...passwords,
+                            {
+                                _id: res.data.details[
+                                    res.data.details.length - 1
+                                ]._id,
+                                site: site,
+                                username: login,
+                                password: pwd,
+                            },
+                        ]);
                     });
             } else {
+                var tempwd = pwd;
                 axios
                     .post("http://localhost:5000/dashboard/edit", {
                         params: {
@@ -62,7 +93,12 @@ export default function Dashboardbody({ props }) {
                             detailsId: passwords[index]._id,
                             site: site,
                             username: login,
-                            password: pwd,
+                            password: encrypt(
+                                [...props.location.state.subKeys],
+                                convertMsgToArray(" ".repeat(16) + pwd).slice(
+                                    -16
+                                )
+                            ),
                         },
                     })
                     .then((res) => {
@@ -73,7 +109,7 @@ export default function Dashboardbody({ props }) {
                                 _id: passwords[index]._id,
                                 site: site,
                                 username: login,
-                                password: pwd,
+                                password: tempwd,
                             },
                         ]);
                     });
@@ -167,7 +203,7 @@ export default function Dashboardbody({ props }) {
                     <div className="password-body-wrapper">
                         {passwords.map((password, index) => {
                             return (
-                                <div className="password-wrapper">
+                                <div key={index} className="password-wrapper">
                                     <div className="password-item">
                                         {password.site}
                                     </div>
