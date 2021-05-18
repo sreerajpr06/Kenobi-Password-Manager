@@ -29,7 +29,6 @@ function LoginBody({ props }) {
             })
             .then((res) => {
                 if (typeof res.data !== "undefined" || res.data.length === 0) {
-                    console.log(res.data);
                     var password = res.data[0].password;
                     if (password === cipher) {
                         props.history.push({
@@ -90,10 +89,7 @@ function LoginBody({ props }) {
                                 </h3>
                                 <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                                     <div class="mb-2">
-                                        <label
-                                            class="block mb-2 text-sm font-bold text-gray-700"
-                                            for="email"
-                                        >
+                                        <label class="block mb-2 text-sm font-bold text-gray-700">
                                             Email
                                         </label>
                                         <input
@@ -109,10 +105,7 @@ function LoginBody({ props }) {
                                     </div>
                                     <div class="mb-8">
                                         <div class="mb-4 md:mr-2 md:mb-0">
-                                            <label
-                                                class="block mb-2 text-sm font-bold text-gray-700"
-                                                for="password"
-                                            >
+                                            <label class="block mb-2 text-sm font-bold text-gray-700">
                                                 Password
                                             </label>
                                             <input
