@@ -24,9 +24,14 @@
     z-index: 2;
 }
 
-.alertbox-icon {
+.alert-icon {
     font-size: 4rem;
     color: rgb(238, 14, 14);
+}
+
+.info-icon {
+    font-size: 4rem;
+    color: rgb(229, 155, 44);
 }
 
 .alertbox-title {
