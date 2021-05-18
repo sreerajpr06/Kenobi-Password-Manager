@@ -1,0 +1,61 @@
+.alertbox-wrapper {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.664);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alertbox {
+    width: 30%;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 30px;
+    z-index: 2;
+}
+
+.alertbox-icon {
+    font-size: 4rem;
+    color: rgb(238, 14, 14);
+}
+
+.alertbox-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.alertbox-message {
+    text-align: center;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.alertbox-button {
+    width: 30%;
+    height: 2.4rem;
+    background-color: rgb(229, 155, 44);
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.alertbox-button:hover {
+    background-color: rgb(136, 92, 25);
+}
