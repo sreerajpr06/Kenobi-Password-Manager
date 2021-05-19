@@ -25,7 +25,7 @@ export default function Dashboardbody({ props }) {
         var sessionPassword = window.sessionStorage.getItem("subKeys");
         if (sessionEmail !== null && sessionPassword !== null) {
             axios
-                .get("http://localhost:5000/dashboard/all", {
+                .get("http://localhost:5100/dashboard/all", {
                     params: {
                         username: sessionEmail,
                     },
@@ -65,7 +65,7 @@ export default function Dashboardbody({ props }) {
         if (site !== "" && login !== "" && pwd !== "") {
             if (index < 0) {
                 axios
-                    .post("http://localhost:5000/dashboard/add", {
+                    .post("http://localhost:5100/dashboard/add", {
                         params: {
                             username: sessionParameters.email,
                             site: site,
@@ -94,7 +94,7 @@ export default function Dashboardbody({ props }) {
             } else {
                 var tempwd = pwd;
                 axios
-                    .post("http://localhost:5000/dashboard/edit", {
+                    .post("http://localhost:5100/dashboard/edit", {
                         params: {
                             id: id,
                             detailsId: passwords[index]._id,
@@ -135,7 +135,7 @@ export default function Dashboardbody({ props }) {
 
     function onDelete(index) {
         axios
-            .post("http://localhost:5000/dashboard/delete", {
+            .post("http://localhost:5100/dashboard/delete", {
                 params: {
                     username: sessionParameters.email,
                     site: passwords[index].site,

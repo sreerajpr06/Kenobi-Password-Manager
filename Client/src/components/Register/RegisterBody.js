@@ -56,7 +56,7 @@ function RegisterBody({ props }) {
         };
 
         axios
-            .post("http://localhost:5000/users/add", user)
+            .post("http://localhost:5100/users/add", user)
             .then((res) => {
                 if (res.status === 200) {
                     setAlertWindowIcon("info");
