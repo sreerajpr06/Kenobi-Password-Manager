@@ -11,4 +11,5 @@ cd ../Server
 npm i
 
 printf "\n\n### Restarting Service ###\n\n"
-pm2 restart kenobi-password-manager
+pm2 restart kenobi-front-end
+pm2 restart kenobi-back-end
