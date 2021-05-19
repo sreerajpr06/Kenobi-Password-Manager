@@ -18,8 +18,8 @@ function LoginBody({ props }) {
         }
 
         var key = pbkdf(email, pwd);
-        var subKey = genAllSubKeys(key);
-        var cipher = encrypt(subKey, key);
+        var subKeys = genAllSubKeys(key);
+        var cipher = encrypt(subKeys, key);
 
         axios
             .get("http://localhost:5000/login", {
@@ -35,7 +35,7 @@ function LoginBody({ props }) {
                             pathname: "/dashboard",
                             state: {
                                 email: email,
-                                subKey: subKey,
+                                subKeys: subKeys,
                             },
                         });
                     } else {

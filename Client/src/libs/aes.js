@@ -742,6 +742,14 @@ function pbkdf(email, pwd) {
     return fin;
 }
 
+function convertMsgToArray(msg) {
+    var temp = [];
+    for (var i = 0; i < msg.length; ++i) {
+        temp.push(msg.charCodeAt(i));
+    }
+    return temp;
+}
+
 // email = "sidhantunnithan@gmail.com";
 // pwd = "randompassword";
 // key = pbkdf(email, pwd);
@@ -750,7 +758,7 @@ function pbkdf(email, pwd) {
 // cipher = encrypt(subKey, pwd);
 // plain = decrypt(subKey, cipher);
 
-export { pbkdf, genAllSubKeys, encrypt, decrypt };
+export { pbkdf, genAllSubKeys, encrypt, decrypt, convertMsgToArray };
 
 // Benchmarks for generating all key, subkeys, encryption and decryption every iteration
 // 1 Iteration : 0.07 - 0.08 seconds
