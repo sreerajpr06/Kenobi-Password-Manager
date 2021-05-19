@@ -6,6 +6,10 @@ import { encrypt, decrypt, convertMsgToArray } from "../../libs/aes";
 
 export default function Dashboardbody({ props }) {
     const [id, setID] = useState(0);
+    const [sessionParameters, setSessionParameters] = useState({
+        email: "",
+        subKeys: [],
+    });
     const [pwdWindowClass, setPwdWindowClass] = useState(false);
     const [showPasswordIndex, setShowPasswordIndex] = useState(-1);
     const [passwordWindowPackage, setPasswordWindowPackage] = useState({
@@ -17,15 +21,13 @@ export default function Dashboardbody({ props }) {
     const [passwords, setPasswords] = useState([]);
 
     useEffect(async () => {
-        if (
-            typeof props.location.state !== "undefined" &&
-            typeof props.location.state.email !== "undefined" &&
-            typeof props.location.state.subKeys !== "undefined"
-        ) {
+        var sessionEmail = window.sessionStorage.getItem("email");
+        var sessionPassword = window.sessionStorage.getItem("subKeys");
+        if (sessionEmail !== null && sessionPassword !== null) {
             axios
                 .get("http://localhost:5000/dashboard/all", {
                     params: {
-                        username: props.location.state.email,
+                        username: sessionEmail,
                     },
                 })
                 .then((res) => {
@@ -36,14 +38,19 @@ export default function Dashboardbody({ props }) {
                                 site: detail.site,
                                 username: detail.username,
                                 password: decrypt(
-                                    [...props.location.state.subKeys],
+                                    [...JSON.parse(sessionPassword)],
                                     convertMsgToArray(detail.password)
                                 ),
                             };
                         }
                     );
                     setPasswords(passwds);
+                    setSessionParameters({
+                        email: sessionEmail,
+                        subKeys: JSON.parse(sessionPassword),
+                    });
                     setID(res.data._id);
+                    window.sessionStorage.clear();
                 });
         } else {
             props.history.push("/login");
@@ -60,11 +67,11 @@ export default function Dashboardbody({ props }) {
                 axios
                     .post("http://localhost:5000/dashboard/add", {
                         params: {
-                            username: props.location.state.email,
+                            username: sessionParameters.email,
                             site: site,
                             usernameSite: login,
                             password: encrypt(
-                                [...props.location.state.subKeys],
+                                [...sessionParameters.subKeys],
                                 convertMsgToArray(" ".repeat(16) + pwd).slice(
                                     -16
                                 )
@@ -94,7 +101,7 @@ export default function Dashboardbody({ props }) {
                             site: site,
                             username: login,
                             password: encrypt(
-                                [...props.location.state.subKeys],
+                                [...sessionParameters.subKeys],
                                 convertMsgToArray(" ".repeat(16) + pwd).slice(
                                     -16
                                 )
@@ -130,7 +137,7 @@ export default function Dashboardbody({ props }) {
         axios
             .post("http://localhost:5000/dashboard/delete", {
                 params: {
-                    username: props.location.state.email,
+                    username: sessionParameters.email,
                     site: passwords[index].site,
                     usernameSite: passwords[index].login,
                 },
@@ -174,10 +181,7 @@ export default function Dashboardbody({ props }) {
             ) : null}
             <div className="dashboard-wrapper">
                 <h1 className="heading">
-                    {typeof props.location.state !== "undefined" &&
-                    typeof props.location.state.email !== "undefined"
-                        ? props.location.state.email
-                        : ""}
+                    {sessionParameters.email}
                     <div
                         className="button-add"
                         onClick={(e) => {
