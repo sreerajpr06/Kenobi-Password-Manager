@@ -27,3 +27,5 @@ Client/node_modules
 Server/node_modules
 
 /Server/.env
+
+deploy.bat
