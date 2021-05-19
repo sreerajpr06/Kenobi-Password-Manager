@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const mongoose = require("mongoose");
 
 require("dotenv").config();
@@ -30,6 +31,11 @@ connection
 const usersRouter = require("./routes/users");
 const loginRouter = require("./routes/login");
 const dashboardRouter = require("./routes/dashboard");
+
+app.use(express.static(path.join(__dirname, "..", "client", "build")));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "client", "build"));
+});
 
 app.use("/users", usersRouter);
 app.use("/login", loginRouter);
