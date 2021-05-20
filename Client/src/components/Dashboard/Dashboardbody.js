@@ -25,7 +25,7 @@ export default function Dashboardbody({ props }) {
         var sessionPassword = window.sessionStorage.getItem("subKeys");
         if (sessionEmail !== null && sessionPassword !== null) {
             axios
-                .get("http://localhost:5100/dashboard/all", {
+                .get("https://api.kenobi.sidhantunnithan.com/dashboard/all", {
                     params: {
                         username: sessionEmail,
                     },
@@ -65,19 +65,22 @@ export default function Dashboardbody({ props }) {
         if (site !== "" && login !== "" && pwd !== "") {
             if (index < 0) {
                 axios
-                    .post("http://localhost:5100/dashboard/add", {
-                        params: {
-                            username: sessionParameters.email,
-                            site: site,
-                            usernameSite: login,
-                            password: encrypt(
-                                [...sessionParameters.subKeys],
-                                convertMsgToArray(" ".repeat(16) + pwd).slice(
-                                    -16
-                                )
-                            ),
-                        },
-                    })
+                    .post(
+                        "https://api.kenobi.sidhantunnithan.com/dashboard/add",
+                        {
+                            params: {
+                                username: sessionParameters.email,
+                                site: site,
+                                usernameSite: login,
+                                password: encrypt(
+                                    [...sessionParameters.subKeys],
+                                    convertMsgToArray(
+                                        " ".repeat(16) + pwd
+                                    ).slice(-16)
+                                ),
+                            },
+                        }
+                    )
                     .then((res) => {
                         setPasswords([
                             ...passwords,
@@ -94,20 +97,23 @@ export default function Dashboardbody({ props }) {
             } else {
                 var tempwd = pwd;
                 axios
-                    .post("http://localhost:5100/dashboard/edit", {
-                        params: {
-                            id: id,
-                            detailsId: passwords[index]._id,
-                            site: site,
-                            username: login,
-                            password: encrypt(
-                                [...sessionParameters.subKeys],
-                                convertMsgToArray(" ".repeat(16) + pwd).slice(
-                                    -16
-                                )
-                            ),
-                        },
-                    })
+                    .post(
+                        "https://api.kenobi.sidhantunnithan.com/dashboard/edit",
+                        {
+                            params: {
+                                id: id,
+                                detailsId: passwords[index]._id,
+                                site: site,
+                                username: login,
+                                password: encrypt(
+                                    [...sessionParameters.subKeys],
+                                    convertMsgToArray(
+                                        " ".repeat(16) + pwd
+                                    ).slice(-16)
+                                ),
+                            },
+                        }
+                    )
                     .then((res) => {
                         setPasswords([
                             ...passwords.slice(0, index),
@@ -135,7 +141,7 @@ export default function Dashboardbody({ props }) {
 
     function onDelete(index) {
         axios
-            .post("http://localhost:5100/dashboard/delete", {
+            .post("httpss://api.kenobi.sidhantunnithan.com/dashboard/delete", {
                 params: {
                     username: sessionParameters.email,
                     site: passwords[index].site,
