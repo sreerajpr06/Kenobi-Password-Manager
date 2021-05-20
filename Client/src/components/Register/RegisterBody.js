@@ -56,7 +56,7 @@ function RegisterBody({ props }) {
         };
 
         axios
-            .post("http://api.kenobi.sidhantunnithan.com/users/add", user)
+            .post("https://api.kenobi.sidhantunnithan.com/users/add", user)
             .then((res) => {
                 if (res.status === 200) {
                     setAlertWindowIcon("info");

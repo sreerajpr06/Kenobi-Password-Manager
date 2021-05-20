@@ -22,7 +22,7 @@ function LoginBody({ props }) {
         var cipher = encrypt(subKeys, key);
 
         axios
-            .get("http://api.kenobi.sidhantunnithan.com/login", {
+            .get("https://api.kenobi.sidhantunnithan.com/login", {
                 params: {
                     username: email,
                 },

@@ -25,7 +25,7 @@ export default function Dashboardbody({ props }) {
         var sessionPassword = window.sessionStorage.getItem("subKeys");
         if (sessionEmail !== null && sessionPassword !== null) {
             axios
-                .get("http://api.kenobi.sidhantunnithan.com/dashboard/all", {
+                .get("https://api.kenobi.sidhantunnithan.com/dashboard/all", {
                     params: {
                         username: sessionEmail,
                     },
@@ -66,7 +66,7 @@ export default function Dashboardbody({ props }) {
             if (index < 0) {
                 axios
                     .post(
-                        "http://api.kenobi.sidhantunnithan.com/dashboard/add",
+                        "https://api.kenobi.sidhantunnithan.com/dashboard/add",
                         {
                             params: {
                                 username: sessionParameters.email,
@@ -98,7 +98,7 @@ export default function Dashboardbody({ props }) {
                 var tempwd = pwd;
                 axios
                     .post(
-                        "http://api.kenobi.sidhantunnithan.com/dashboard/edit",
+                        "https://api.kenobi.sidhantunnithan.com/dashboard/edit",
                         {
                             params: {
                                 id: id,
@@ -141,7 +141,7 @@ export default function Dashboardbody({ props }) {
 
     function onDelete(index) {
         axios
-            .post("http://api.kenobi.sidhantunnithan.com/dashboard/delete", {
+            .post("httpss://api.kenobi.sidhantunnithan.com/dashboard/delete", {
                 params: {
                     username: sessionParameters.email,
                     site: passwords[index].site,
