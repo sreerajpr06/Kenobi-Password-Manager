@@ -141,7 +141,7 @@ export default function Dashboardbody({ props }) {
 
     function onDelete(index) {
         axios
-            .post("httpss://api.kenobi.sidhantunnithan.com/dashboard/delete", {
+            .post("https://api.kenobi.sidhantunnithan.com/dashboard/delete", {
                 params: {
                     username: sessionParameters.email,
                     site: passwords[index].site,
