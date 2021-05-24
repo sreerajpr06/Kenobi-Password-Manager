@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/Client/build
 
 # misc
 .vscode
@@ -27,3 +27,5 @@ Client/node_modules
 Server/node_modules
 
 /Server/.env
+
+deploy.bat

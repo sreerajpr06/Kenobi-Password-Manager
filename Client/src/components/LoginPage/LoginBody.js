@@ -22,7 +22,7 @@ function LoginBody({ props }) {
         var cipher = encrypt(subKeys, key);
 
         axios
-            .get("http://localhost:5000/login", {
+            .get("https://api.kenobi.sidhantunnithan.com/login", {
                 params: {
                     username: email,
                 },
@@ -31,13 +31,12 @@ function LoginBody({ props }) {
                 if (typeof res.data !== "undefined" || res.data.length === 0) {
                     var password = res.data[0].password;
                     if (password === cipher) {
-                        props.history.push({
-                            pathname: "/dashboard",
-                            state: {
-                                email: email,
-                                subKeys: subKeys,
-                            },
-                        });
+                        window.sessionStorage.setItem("email", email);
+                        window.sessionStorage.setItem(
+                            "subKeys",
+                            JSON.stringify(subKeys)
+                        );
+                        props.history.push("/dashboard");
                     } else {
                         showAlert(
                             "Incorrect Password",
