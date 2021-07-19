@@ -190,7 +190,6 @@ function RegisterBody({ props }) {
                                 <div class="text-center">
                                     <a
                                         class="inline-block text-sm text-blue-500 align-baseline hover:text-orange"
-                                        href="#"
                                         onClick={(e) => {
                                             props.history.push("/login");
                                         }}
